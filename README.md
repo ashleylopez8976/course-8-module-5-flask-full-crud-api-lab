@@ -171,3 +171,55 @@ After completing this lab, you will:
 ✅ Return proper HTTP status codes and structured responses  
 
 This is a critical step in your backend developer journey. Next up: persistent databases!
+
+## Event Management API
+
+A Flask API that creates, updates, and deletes events using an in-memory list. Changes reset when the server restarts.
+
+### Run the App
+
+```bash
+pipenv run python app.py
+```
+
+### Routes
+
+- POST `/events`: Create an event. Returns 201.
+- PATCH `/events/<id>`: Update an event title. Returns 200.
+- DELETE `/events/<id>`: Delete an event. Returns 204.
+- Unknown event IDs return 404.
+- Missing or invalid titles return 400.
+
+### Example Request Bodies
+
+POST `/events`:
+
+```json
+{"title": "Hackathon"}
+```
+
+Example response:
+
+```json
+{"id": 3, "title": "Hackathon"}
+```
+
+PATCH `/events/1`:
+
+```json
+{"title": "Hackathon 2025"}
+```
+
+Example response:
+
+```json
+{"id": 1, "title": "Hackathon 2025"}
+```
+
+DELETE `/events/2` returns an empty response with status 204.
+
+### Run Tests
+
+```bash
+pipenv run pytest
+```
